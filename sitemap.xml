@@ -4,7 +4,7 @@
   <url>
     <loc>https://hexo.anxy.top/posts/1.html</loc>
     
-    <lastmod>2024-11-21</lastmod>
+    <lastmod>2024-11-26</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -47,5 +47,12 @@
 
   
 
+  
+  <url>
+    <loc>https://hexo.anxy.top/categories/%E5%85%B6%E5%AE%83/</loc>
+    <lastmod>2024-11-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
   
 </urlset>
