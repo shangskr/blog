@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>anxy的博客</title>
+  <title>ANXYの小窝</title>
   
-  
+  <subtitle>blog.anxy.top</subtitle>
   <link href="https://hexo.anxy.top/atom.xml" rel="self"/>
   
   <link href="https://hexo.anxy.top/"/>
