@@ -1,23 +1,4 @@
-window.onscroll = percent;// 执行函数
-// 页面百分比
-function percent() {
-    let a = document.documentElement.scrollTop || window.pageYOffset, // 卷去高度
-        b = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight, document.body.clientHeight, document.documentElement.clientHeight) - document.documentElement.clientHeight, // 整个网页高度
-        result = Math.round(a / b * 100), // 计算百分比
-        up = document.querySelector("#go-up") // 获取按钮
-
-    if (result <= 95) {
-        up.childNodes[0].style.display = 'none'
-        up.childNodes[1].style.display = 'block'
-        up.childNodes[1].innerHTML = result;
-    } else {
-        up.childNodes[1].style.display = 'none'
-        up.childNodes[0].style.display = 'block'
-    }
-}
-
-/* 随机文章 */
-const anxy = {
+const meuicat = {
 	getRandomElementsFromArray: function(arr, num) {
 		const totalElements = arr.length;
 		const selectedElements = new Set();
@@ -28,7 +9,7 @@ const anxy = {
 		return Array.from(selectedElements);
 	},
 	renderingPosts: function(data) {
-		const randomElements = anxy.getRandomElementsFromArray(data, 4);
+		const randomElements = meuicat.getRandomElementsFromArray(data, 4);
 		const postsHtml = randomElements.map((i) => `
 		<div class="post_item">
 			<a class="post_box" title="${i.title}" href="javascript:void(0)" onclick="pjax.loadUrl('${i.link}')">
@@ -56,7 +37,7 @@ const anxy = {
 		var cachedTimestamp = sessionStorage.getItem("postsInfoTimestamp");
 
 		if (cachedData && cachedTimestamp && (Date.now() - cachedTimestamp < CACHE_EXPIRATION_TIME)) {
-			anxy.renderingPosts(JSON.parse(cachedData));
+			meuicat.renderingPosts(JSON.parse(cachedData));
 		} else {
 			fetch("/articles-random.json")
 				.then(res => res.json())
@@ -64,7 +45,7 @@ const anxy = {
 					sessionStorage.setItem("postsInfo", JSON.stringify(data));
 					sessionStorage.setItem("postsInfoTimestamp", Date.now());
 
-					anxy.renderingPosts(data);
+					meuicat.renderingPosts(data);
 				});
 		}
 	}, // 主页banner随机推荐
@@ -81,7 +62,7 @@ const anxy = {
 }
 
 window.DOMReady = function () {
-	if (location.pathname == '/' || location.pathname.startsWith('/page/')) anxy.RandomPosts();
+	if (location.pathname == '/' || location.pathname.startsWith('/page/')) meuicat.RandomPosts();
 };
 
 document.addEventListener("DOMContentLoaded", DOMReady)
