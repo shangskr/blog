@@ -2,6 +2,42 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://hexo.anxy.top/posts/3.html</loc>
+    
+    <lastmod>2024-11-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://hexo.anxy.top/posts/4.html</loc>
+    
+    <lastmod>2024-11-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://hexo.anxy.top/posts/5.html</loc>
+    
+    <lastmod>2024-11-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://hexo.anxy.top/posts/2.html</loc>
+    
+    <lastmod>2024-11-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://hexo.anxy.top/tags/index.html</loc>
     
     <lastmod>2024-11-26</lastmod>
@@ -12,42 +48,6 @@
   
   <url>
     <loc>https://hexo.anxy.top/categories/index.html</loc>
-    
-    <lastmod>2024-11-26</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://hexo.anxy.top/posts/1.html</loc>
-    
-    <lastmod>2024-11-26</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://hexo.anxy.top/posts/1.html</loc>
-    
-    <lastmod>2024-11-26</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://hexo.anxy.top/posts/1.html</loc>
-    
-    <lastmod>2024-11-26</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://hexo.anxy.top/posts/1.html</loc>
     
     <lastmod>2024-11-26</lastmod>
     

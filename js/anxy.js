@@ -1,3 +1,7 @@
+//随机文章js
+let CACHE_EXPIRATION_TIME = 12 * 60 * 60 * 1000;
+
+//右侧按钮阅读进度js
 window.onscroll = percent;// 执行函数
 // 页面百分比
 function percent() {
@@ -16,7 +20,7 @@ function percent() {
     }
 }
 
-/* 随机文章 */
+//随机文章js
 const anxy = {
 	getRandomElementsFromArray: function(arr, num) {
 		const totalElements = arr.length;
@@ -52,8 +56,10 @@ const anxy = {
 			.innerHTML = postsHtml
 	},
 	RandomPosts: function() {
-		var cachedData = sessionStorage.getItem("postsInfo");
-		var cachedTimestamp = sessionStorage.getItem("postsInfoTimestamp");
+        const random = document.querySelector('.banner-random')
+        if (!random) return
+		const cachedData = sessionStorage.getItem("postsInfo");
+		const cachedTimestamp = sessionStorage.getItem("postsInfoTimestamp");
 
 		if (cachedData && cachedTimestamp && (Date.now() - cachedTimestamp < CACHE_EXPIRATION_TIME)) {
 			anxy.renderingPosts(JSON.parse(cachedData));
@@ -80,8 +86,8 @@ const anxy = {
 	} // 主页推荐banner滑块
 }
 
-window.DOMReady = function () {
-	if (location.pathname == '/' || location.pathname.startsWith('/page/')) anxy.RandomPosts();
+const DOMReady = () => {
+	anxy.RandomPosts();
 };
 
 document.addEventListener("DOMContentLoaded", DOMReady)

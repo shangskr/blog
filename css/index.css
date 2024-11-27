@@ -2113,7 +2113,9 @@ figure.highlight pre .javascript .function {
   padding: 0 16px;
 }
 .banner-random {
-  margin-top: 15px;
+  margin: 15px auto 0;
+  width: 100%;
+  max-width: 1200px;
 }
 .banner-random .random-title {
   display: -webkit-box;
