@@ -22,73 +22,85 @@ function percent() {
 
 //随机文章js
 const anxy = {
-	getRandomElementsFromArray: function(arr, num) {
-		const totalElements = arr.length;
-		const selectedElements = new Set();
-		while (selectedElements.size < num) {
-			const randomIndex = Math.floor(Math.random() * totalElements);
-			selectedElements.add(arr[randomIndex]);
-		}
-		return Array.from(selectedElements);
-	},
-	renderingPosts: function(data) {
-		const randomElements = anxy.getRandomElementsFromArray(data, 4);
-		const postsHtml = randomElements.map((i) => `
-		<div class="post_item">
-			<a class="post_box" title="${i.title}" href="javascript:void(0)" onclick="pjax.loadUrl('${i.link}')">
-				<div class="post-info">
-					<p class="post-title">
-						${i.title}
-					</p>
-					<div class="info-box">
-						<span>${i.time}</span>
-						<span style="margin: 0 6px">|</span>
-						<span>${i.categories}</span>
-					</div>
-				</div>
-				<p class="post_description">
-					${i.description}
-				</p>
-			</a>
-		</div>`)
-			.join('');
-		document.querySelector(".banner-random>.random-list")
-			.innerHTML = postsHtml
-	},
-	RandomPosts: function() {
-        const random = document.querySelector('.banner-random')
-        if (!random) return
-		const cachedData = sessionStorage.getItem("postsInfo");
-		const cachedTimestamp = sessionStorage.getItem("postsInfoTimestamp");
+    getRandomElementsFromArray: function(arr, num) {
+        const totalElements = arr.length;
+        const selectedElements = new Set();
+        while (selectedElements.size < num) {
+            const randomIndex = Math.floor(Math.random() * totalElements);
+            selectedElements.add(arr[randomIndex]);
+        }
+        return Array.from(selectedElements);
+    },
 
-		if (cachedData && cachedTimestamp && (Date.now() - cachedTimestamp < CACHE_EXPIRATION_TIME)) {
-			anxy.renderingPosts(JSON.parse(cachedData));
-		} else {
-			fetch("/articles-random.json")
-				.then(res => res.json())
-				.then(data => {
-					sessionStorage.setItem("postsInfo", JSON.stringify(data));
-					sessionStorage.setItem("postsInfoTimestamp", Date.now());
+    renderingPosts: function(data) {
+        const randomElements = anxy.getRandomElementsFromArray(data, 4);
+        const postsHtml = randomElements.map((i) => `
+        <div class="post_item">
+            <a class="post_box" title="${i.title}" href="javascript:void(0)" onclick="pjax.loadUrl('${i.link}')">
+                <div class="post-info">
+                    <p class="post-title">
+                        ${i.title}
+                    </p>
+                    <div class="info-box">
+                        <span>${i.time}</span>
+                        <span style="margin: 0 6px">|</span>
+                        <span>${i.categories}</span>
+                    </div>
+                </div>
+                <p class="post_description">
+                    ${i.description}
+                </p>
+            </a>
+        </div>`).join('');
+        const randomList = document.querySelector(".banner-random>.random-list");
+        if (randomList) {
+            randomList.innerHTML = postsHtml;
+        }
+    },
 
-					anxy.renderingPosts(data);
-				});
-		}
-	}, // 主页banner随机推荐
-	RandomBar: function(text) {
-		const randomList = document.querySelector('.random-list');
-		const slideAmount = 210;
-	
-		if (text === 'prev') {
-			randomList.scrollLeft -= slideAmount;
-		} else if (text === 'next') {
-			randomList.scrollLeft += slideAmount;
-		}
-	} // 主页推荐banner滑块
-}
+    loadData: function() {
+        const randomList = document.querySelector(".random-list");
+        if (randomList) {
+            randomList.innerHTML = "<p>正在加载随机文章...</p>";  // 显示加载提示
+        }
 
-const DOMReady = () => {
-	anxy.RandomPosts();
+        fetch("/articles-random.json")
+            .then(res => {
+                if (!res.ok) throw new Error('请求失败');  // 确保请求成功
+                return res.json();
+            })
+            .then(data => {
+                sessionStorage.setItem("postsInfo", JSON.stringify(data));
+                sessionStorage.setItem("postsInfoTimestamp", Date.now());
+                anxy.renderingPosts(data);
+            })
+            .catch(err => {
+                console.error("加载随机文章失败", err);  // 网络请求失败时的错误提示
+                if (randomList) {
+                    randomList.innerHTML = "<p>无法加载随机文章，请稍后再试。</p>";
+                }
+            });
+    },
+
+    RandomPosts: function() {
+        const cachedData = sessionStorage.getItem("postsInfo");
+        const cachedTimestamp = sessionStorage.getItem("postsInfoTimestamp");
+
+        // 检查缓存是否有效
+        if (cachedData && cachedTimestamp && (Date.now() - cachedTimestamp < CACHE_EXPIRATION_TIME)) {
+            try {
+                anxy.renderingPosts(JSON.parse(cachedData));  // 渲染缓存的数据
+            } catch (e) {
+                console.error("缓存数据解析失败", e);
+                anxy.loadData();  // 如果解析失败，重新加载数据
+            }
+        } else {
+            anxy.loadData();  // 缓存无效或不存在时，加载新数据
+        }
+    }
 };
 
-document.addEventListener("DOMContentLoaded", DOMReady)
-document.addEventListener("pjax:complete", DOMReady)
+// 确保 DOM 完全加载后再执行
+document.addEventListener("DOMContentLoaded", function() {
+    anxy.RandomPosts();  // 页面加载完成后调用随机文章加载函数
+});
