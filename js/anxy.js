@@ -60,11 +60,9 @@ const anxy = {
     },
 
     loadData: function() {
-        const randomList = document.querySelector(".random-list");
-        if (randomList) {
-            randomList.innerHTML = "<p>正在加载随机文章...</p>";  // 显示加载提示
-        }
-
+        // 不再显示加载提示到页面上
+        // 如果你需要进行其他UI操作，可以在这里处理
+        
         fetch("/articles-random.json")
             .then(res => {
                 if (!res.ok) throw new Error('请求失败');  // 确保请求成功
@@ -76,10 +74,8 @@ const anxy = {
                 anxy.renderingPosts(data);
             })
             .catch(err => {
-                console.error("加载随机文章失败", err);  // 网络请求失败时的错误提示
-                if (randomList) {
-                    randomList.innerHTML = "<p>无法加载随机文章，请稍后再试。</p>";
-                }
+                // 网络请求失败时的错误提示仅显示在控制台
+                console.error("加载随机文章失败:", err);
             });
     },
 
@@ -92,7 +88,7 @@ const anxy = {
             try {
                 anxy.renderingPosts(JSON.parse(cachedData));  // 渲染缓存的数据
             } catch (e) {
-                console.error("缓存数据解析失败", e);
+                console.error("缓存数据解析失败:", e);
                 anxy.loadData();  // 如果解析失败，重新加载数据
             }
         } else {
@@ -110,7 +106,7 @@ function prefetchRandomPosts() {
             sessionStorage.setItem("postsInfoTimestamp", Date.now());
         })
         .catch(err => {
-            console.error("预加载随机文章失败", err);
+            console.error("预加载随机文章失败:", err);
         });
 }
 
@@ -128,12 +124,6 @@ const pjax = new Pjax({
 // 监听 pjax 完成事件，确保每次页面加载时都重新加载随机文章
 document.addEventListener('pjax:complete', function () {
     anxy.RandomPosts();  // 每次通过 pjax 加载新页面时重新加载随机文章
-
-    // 清除所有卡片的活动状态
-    const activeItems = document.querySelectorAll('.post_item.active');
-    activeItems.forEach(item => {
-        item.classList.remove('active');
-    });
 });
 
 // 页面加载时优先使用缓存或请求数据
@@ -162,3 +152,4 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // 预加载数据（在页面加载时开始请求数据）
 prefetchRandomPosts();
+

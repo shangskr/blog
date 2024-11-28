@@ -164,17 +164,3 @@ button#go-up:hover #percent {
   display: none !important;
 }
 
-/* 随机文章手机端卡片返回时不会消失解决方案 */
-/* 去除点击时的背景色和边框 */
-.post_item:active,
-.post_item:focus {
-    outline: none;  /* 去除焦点样式 */
-    background: none;  /* 去除点击时的背景色 */
-    box-shadow: none;  /* 去除点击时的阴影 */
-}
-
-/* 如果你给活动状态的卡片设置了某些样式，确保点击后不会持续 */
-.post_item.active {
-    background: transparent;  /* 确保点击后的背景透明 */
-    box-shadow: none;  /* 去除点击后的阴影 */
-}
