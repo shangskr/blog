@@ -177,16 +177,3 @@ button#go-up:hover #percent {
       color: inherit !important;
   }
 }
-/* 在 hover 类上设置样式 */
-.post_item.hover {
-  background: var(--icat-blue);
-  box-shadow: var(--icat-shadow-blue);
-}
-
-/* 触摸设备上禁用 hover */
-@media (hover: none) {
-  .post_item.hover {
-      background: none !important;
-      box-shadow: none !important;
-  }
-}
