@@ -36,7 +36,7 @@ const anxy = {
         const randomElements = anxy.getRandomElementsFromArray(data, 4);
         const postsHtml = randomElements.map((i) => `
         <div class="post_item">
-            <a class="post_box" title="${i.title}" href="javascript:void(0)" onclick="pjax.loadUrl('${i.link}')">
+            <a class="post_box" title="${i.title}" href="${i.link}" onclick="pjax.loadUrl('${i.link}')">
                 <div class="post-info">
                     <p class="post-title">
                         ${i.title}
@@ -97,8 +97,27 @@ const anxy = {
         } else {
             anxy.loadData();  // 缓存无效或不存在时，加载新数据
         }
+
+        // 确保回到首页时也能加载随机文章
+        if (window.location.pathname === '/') {
+            anxy.loadData();  // 主页直接加载随机文章
+        }
     }
 };
+
+// 初始化 pjax
+const pjax = new Pjax({
+    elements: 'a',      // 拦截所有的 <a> 标签
+    selectors: ['#pjax-container'], // 替换的容器
+    cache: true,
+    scrollTo: false,  // 防止 pjax 导致页面滚动位置问题
+    history: true      // 确保正确处理历史记录
+});
+
+// 监听 pjax 完成事件，确保每次页面加载时都重新加载随机文章
+document.addEventListener('pjax:complete', function () {
+    anxy.RandomPosts();  // 每次通过 pjax 加载新页面时重新加载随机文章
+});
 
 // 确保 DOM 完全加载后再执行
 document.addEventListener("DOMContentLoaded", function() {
