@@ -123,3 +123,12 @@ document.addEventListener('pjax:complete', function () {
 document.addEventListener("DOMContentLoaded", function() {
     anxy.RandomPosts();  // 页面加载完成后调用随机文章加载函数
 });
+
+// 在第一次加载时，如果缓存为空或者数据尚未加载，可以强制执行加载
+window.addEventListener("load", function() {
+    // 如果 sessionStorage 中没有缓存数据，执行加载数据
+    const cachedData = sessionStorage.getItem("postsInfo");
+    if (!cachedData) {
+        anxy.loadData();  // 加载新数据
+    }
+});
