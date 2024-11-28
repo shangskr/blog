@@ -97,11 +97,6 @@ const anxy = {
         } else {
             anxy.loadData();  // 缓存无效或不存在时，加载新数据
         }
-
-        // 确保回到首页时也能加载随机文章
-        if (window.location.pathname === '/') {
-            anxy.loadData();  // 主页直接加载随机文章
-        }
     }
 };
 
@@ -121,7 +116,13 @@ document.addEventListener('pjax:complete', function () {
 
 // 确保 DOM 完全加载后再执行
 document.addEventListener("DOMContentLoaded", function() {
-    anxy.RandomPosts();  // 页面加载完成后调用随机文章加载函数
+    // 如果 sessionStorage 中没有缓存数据，执行加载数据
+    const cachedData = sessionStorage.getItem("postsInfo");
+    if (!cachedData) {
+        anxy.loadData();  // 加载新数据
+    } else {
+        anxy.RandomPosts();  // 如果有缓存数据，直接渲染
+    }
 });
 
 // 在第一次加载时，如果缓存为空或者数据尚未加载，可以强制执行加载
@@ -132,3 +133,4 @@ window.addEventListener("load", function() {
         anxy.loadData();  // 加载新数据
     }
 });
+
