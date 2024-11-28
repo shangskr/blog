@@ -173,11 +173,6 @@ button#go-up:hover #percent {
     box-shadow: none;  /* 去除点击时的阴影 */
 }
 
-/* 如果你有点击时特别的视觉效果，可以在这里重置其他属性 */
-.post_item {
-    transition: none;  /* 如果有过渡效果可以取消 */
-}
-
 /* 如果你给活动状态的卡片设置了某些样式，确保点击后不会持续 */
 .post_item.active {
     background: transparent;  /* 确保点击后的背景透明 */
