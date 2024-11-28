@@ -72,10 +72,12 @@ const anxy = {
                 sessionStorage.setItem("postsInfo", JSON.stringify(data));
                 sessionStorage.setItem("postsInfoTimestamp", Date.now());
                 anxy.renderingPosts(data);
+                // 在请求成功后，输出成功日志
+                console.log("随机文章加载成功");
             })
             .catch(err => {
                 // 网络请求失败时的错误提示仅显示在控制台
-                console.error("加载随机文章失败:", err);
+                console.error("随机文章加载失败:", err);
             });
     },
 
@@ -104,8 +106,11 @@ function prefetchRandomPosts() {
         .then(data => {
             sessionStorage.setItem("postsInfo", JSON.stringify(data));
             sessionStorage.setItem("postsInfoTimestamp", Date.now());
+            // 在预加载成功后，输出成功日志
+            console.log("预加载随机文章成功");
         })
         .catch(err => {
+            // 预加载失败时输出日志
             console.error("预加载随机文章失败:", err);
         });
 }
