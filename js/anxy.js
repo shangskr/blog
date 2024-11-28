@@ -114,23 +114,27 @@ document.addEventListener('pjax:complete', function () {
     anxy.RandomPosts();  // 每次通过 pjax 加载新页面时重新加载随机文章
 });
 
-// 确保 DOM 完全加载后再执行
-document.addEventListener("DOMContentLoaded", function() {
-    // 如果 sessionStorage 中没有缓存数据，执行加载数据
+// 通过延迟处理首次加载的问题
+function loadRandomPostsOnPageLoad() {
     const cachedData = sessionStorage.getItem("postsInfo");
     if (!cachedData) {
-        anxy.loadData();  // 加载新数据
+        // 如果缓存没有数据，直接请求新的数据
+        anxy.loadData();
     } else {
-        anxy.RandomPosts();  // 如果有缓存数据，直接渲染
+        // 如果缓存有数据，直接渲染
+        anxy.RandomPosts();
     }
+}
+
+// 在页面加载时就触发请求
+window.addEventListener("load", function() {
+    // 延迟 500ms 确保页面完全加载
+    setTimeout(loadRandomPostsOnPageLoad, 500);
 });
 
-// 在第一次加载时，如果缓存为空或者数据尚未加载，可以强制执行加载
-window.addEventListener("load", function() {
-    // 如果 sessionStorage 中没有缓存数据，执行加载数据
-    const cachedData = sessionStorage.getItem("postsInfo");
-    if (!cachedData) {
-        anxy.loadData();  // 加载新数据
-    }
+// 确保 DOM 完全加载后再执行
+document.addEventListener("DOMContentLoaded", function() {
+    // 再次检查缓存并加载文章
+    loadRandomPostsOnPageLoad();
 });
 
