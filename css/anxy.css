@@ -164,16 +164,3 @@ button#go-up:hover #percent {
   display: none !important;
 }
 
-/* 随机文章css */
-/* 在没有 hover 能力的设备上禁用 hover 样式 */
-@media (hover: none) {
-  .post_item:hover {
-      background: none !important;  /* 或者设置为默认背景 */
-      box-shadow: none !important;  /* 根据需要禁用其他 hover 样式 */
-  }
-
-  .post_box:hover {
-      /* 你也可以在这里禁用 <a> 元素的 hover 样式 */
-      color: inherit !important;
-  }
-}
