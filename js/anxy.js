@@ -1,5 +1,5 @@
 //随机文章js
-let CACHE_EXPIRATION_TIME = 12 * 60 * 60 * 1000;
+const CACHE_EXPIRATION_TIME = 12 * 60 * 60 * 1000;  // 缓存过期时间，12小时
 
 //右侧按钮阅读进度js
 window.onscroll = percent;// 执行函数
@@ -100,13 +100,28 @@ const anxy = {
     }
 };
 
+// 预加载随机文章数据
+function prefetchRandomPosts() {
+    fetch("/articles-random.json")
+        .then(res => res.json())
+        .then(data => {
+            sessionStorage.setItem("postsInfo", JSON.stringify(data));
+            sessionStorage.setItem("postsInfoTimestamp", Date.now());
+        })
+        .catch(err => {
+            console.error("预加载随机文章失败", err);
+        });
+}
+
 // 初始化 pjax
 const pjax = new Pjax({
     elements: 'a',      // 拦截所有的 <a> 标签
     selectors: ['#pjax-container'], // 替换的容器
     cache: true,
-    scrollTo: false,  // 防止 pjax 导致页面滚动位置问题
-    history: true      // 确保正确处理历史记录
+    history: true,      // 确保正确处理历史记录
+    scrollTo: false,    // 防止 pjax 导致页面滚动位置问题
+    transition: 'fade', // 过渡效果
+    transitionTime: 300, // 设置过渡效果的时间
 });
 
 // 监听 pjax 完成事件，确保每次页面加载时都重新加载随机文章
@@ -114,7 +129,7 @@ document.addEventListener('pjax:complete', function () {
     anxy.RandomPosts();  // 每次通过 pjax 加载新页面时重新加载随机文章
 });
 
-// 通过延迟处理首次加载的问题
+// 在页面加载时优先使用缓存或请求数据
 function loadRandomPostsOnPageLoad() {
     const cachedData = sessionStorage.getItem("postsInfo");
     if (!cachedData) {
@@ -126,7 +141,7 @@ function loadRandomPostsOnPageLoad() {
     }
 }
 
-// 在页面加载时就触发请求
+// 页面加载时调用
 window.addEventListener("load", function() {
     // 延迟 500ms 确保页面完全加载
     setTimeout(loadRandomPostsOnPageLoad, 500);
@@ -138,3 +153,5 @@ document.addEventListener("DOMContentLoaded", function() {
     loadRandomPostsOnPageLoad();
 });
 
+// 预加载数据（在页面加载时开始请求数据）
+prefetchRandomPosts();
