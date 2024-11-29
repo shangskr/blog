@@ -164,3 +164,8 @@ button#go-up:hover #percent {
   display: none !important;
 }
 
+/* 随机文章圆角，线框 */
+.banner-random .random-list .post_item {
+  border-radius: 25px;
+  border: var(--border-style);
+}
