@@ -2115,7 +2115,13 @@ figure.highlight pre .javascript .function {
 .banner-random {
   margin: 15px auto 0;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1170px;
+}
+@media screen and (max-width: 768px) {
+  .banner-random {
+    margin-left: 5px;
+    padding-right: 10px;
+  }
 }
 .banner-random .random-title {
   display: -webkit-box;
@@ -2394,7 +2400,7 @@ figure.highlight pre .javascript .function {
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0);
-  color: var(--icat-white);
+  color: #fff;
   -webkit-transition: 0.6s;
   -moz-transition: 0.6s;
   -o-transition: 0.6s;
