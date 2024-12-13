@@ -1,5 +1,6 @@
+// 随机文章js
 const CACHE_EXPIRATION_TIME = 12 * 60 * 60 * 1000;  // 缓存过期时间，12小时
-
+// 随机文章js
 const anxy = {
     getRandomElementsFromArray: function(arr, num) {
         const shuffled = arr.sort(() => 0.5 - Math.random()); // 打乱数组顺序
@@ -80,9 +81,6 @@ const pjax = new Pjax({
 document.addEventListener('pjax:complete', function () {
     setTimeout(() => anxy.RandomPosts(), 500);  // 等待500ms再渲染随机文章，确保内容渲染完毕
 });
-
-
-
 
 // 切换背景弹窗版
 // 存数据
