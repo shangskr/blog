@@ -37,10 +37,10 @@ const anxy = {
                 sessionStorage.setItem("postsInfo", JSON.stringify(data));
                 sessionStorage.setItem("postsInfoTimestamp", Date.now());
                 anxy.renderingPosts(data);
-                console.log("随机文章加载成功");  // 成功时显示此消息
+                console.log("随机文章加载成功");
             })
             .catch(err => {
-                console.error("随机文章加载失败");  // 失败时显示此消息
+                console.error("随机文章加载失败:", err);
                 setTimeout(anxy.loadData, 3000);  // 错误时重试
             });
     },
@@ -53,7 +53,7 @@ const anxy = {
             try {
                 anxy.renderingPosts(JSON.parse(cachedData));
             } catch (e) {
-                console.error("随机文章加载失败");  // 如果缓存解析失败，显示此消息
+                console.error("缓存数据解析失败:", e);
                 anxy.loadData();  // 如果解析失败，重新加载数据
             }
         } else {
@@ -82,12 +82,14 @@ document.addEventListener("DOMContentLoaded", function() {
         });
 
         document.addEventListener('pjax:complete', function () {
+            // 在每次 pjax 完成后重新加载随机文章
             anxy.RandomPosts();
         });
     } else {
         console.error("Pjax 库未加载，请检查是否正确引入该库。");
     }
 });
+
 
 // 切换背景弹窗版
 // 存数据
