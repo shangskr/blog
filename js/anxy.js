@@ -62,8 +62,8 @@ const anxy = {
 };
 
 // 页面加载时加载随机文章
-document.addEventListener("DOMContentLoaded", function() {
-    anxy.RandomPosts();
+window.addEventListener('load', function() {
+    anxy.RandomPosts();  // 确保在页面完全加载后执行
 });
 
 // 初始化 pjax
@@ -78,8 +78,9 @@ const pjax = new Pjax({
 });
 
 document.addEventListener('pjax:complete', function () {
-    anxy.RandomPosts();
+    setTimeout(() => anxy.RandomPosts(), 500);  // 等待500ms再渲染随机文章，确保内容渲染完毕
 });
+
 
 
 
