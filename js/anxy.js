@@ -1,6 +1,6 @@
-//随机文章js
+// 随机文章js
 const CACHE_EXPIRATION_TIME = 12 * 60 * 60 * 1000;  // 缓存过期时间，12小时
-//随机文章js
+// 随机文章js
 const anxy = {
     getRandomElementsFromArray: function(arr, num) {
         const shuffled = arr.sort(() => 0.5 - Math.random()); // 打乱数组顺序
@@ -34,14 +34,18 @@ const anxy = {
         fetch("/articles-random.json")
             .then(res => res.ok ? res.json() : Promise.reject('请求失败'))
             .then(data => {
+                // 缓存数据
                 sessionStorage.setItem("postsInfo", JSON.stringify(data));
                 sessionStorage.setItem("postsInfoTimestamp", Date.now());
+                console.log("数据加载成功，存入 sessionStorage");
+
+                // 渲染文章
                 anxy.renderingPosts(data);
-                console.log("随机文章加载成功");
             })
             .catch(err => {
-                console.error("随机文章加载失败:", err);
-                setTimeout(anxy.loadData, 3000);  // 错误时重试
+                console.error("数据加载失败:", err);
+                // 出现错误时尝试重试
+                setTimeout(anxy.loadData, 3000);
             });
     },
 
@@ -49,15 +53,20 @@ const anxy = {
         const cachedData = sessionStorage.getItem("postsInfo");
         const cachedTimestamp = sessionStorage.getItem("postsInfoTimestamp");
 
+        // 输出调试信息，检查缓存
+        console.log("缓存检查:", { cachedData, cachedTimestamp });
+
         if (cachedData && cachedTimestamp && (Date.now() - cachedTimestamp < CACHE_EXPIRATION_TIME)) {
             try {
                 anxy.renderingPosts(JSON.parse(cachedData));
             } catch (e) {
                 console.error("缓存数据解析失败:", e);
-                anxy.loadData();  // 如果解析失败，重新加载数据
+                // 如果缓存解析失败，重新加载数据
+                anxy.loadData();
             }
         } else {
-            anxy.loadData();  // 缓存无效或不存在时，加载新数据
+            // 如果没有缓存或缓存过期，重新加载数据
+            anxy.loadData();
         }
     }
 };
@@ -82,6 +91,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
 
         document.addEventListener('pjax:complete', function () {
+            console.log("Pjax 完成，重新加载随机文章");
             // 在每次 pjax 完成后重新加载随机文章
             anxy.RandomPosts();
         });
@@ -89,6 +99,7 @@ document.addEventListener("DOMContentLoaded", function() {
         console.error("Pjax 库未加载，请检查是否正确引入该库。");
     }
 });
+
 
 
 // 切换背景弹窗版
