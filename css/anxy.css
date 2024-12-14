@@ -246,3 +246,11 @@ translate:-50%;
       display: none;
   }
 }
+
+/* 友链随机颜色css */
+#article-container .flink .flink-list {
+  text-align: left!important;
+}
+.flink-item-name, .flink-item-desc {
+  color: white!important;
+}
