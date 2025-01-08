@@ -1,0 +1,303 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>通过RSS推送自己喜欢的文章 | ANXYの小窝</title><meta name="author" content="安小歪"><meta name="copyright" content="安小歪"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="项目地址RSS Feed Checker该项目用来订阅自己喜欢的博主的文章，避免不知道其啥时候更新新的文章，这是一个用于检查 RSS 源并发送电子邮件通知的项目。项目使用 GitHub Actions 定期运行，检查指定的 RSS 源，并在发现新内容时发送电子邮件通知。  需要注意，fork本项目之后，请删除check这个文件夹，并且在rss_list.txt文件内填写需要检查的 RSS URL，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="通过RSS推送自己喜欢的文章">
+<meta property="og:url" content="https://hexo.anxy.top/posts/14.html">
+<meta property="og:site_name" content="ANXYの小窝">
+<meta property="og:description" content="项目地址RSS Feed Checker该项目用来订阅自己喜欢的博主的文章，避免不知道其啥时候更新新的文章，这是一个用于检查 RSS 源并发送电子邮件通知的项目。项目使用 GitHub Actions 定期运行，检查指定的 RSS 源，并在发现新内容时发送电子邮件通知。  需要注意，fork本项目之后，请删除check这个文件夹，并且在rss_list.txt文件内填写需要检查的 RSS URL，">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://anxy.qyliu.top/2024-07-04/rss.webp">
+<meta property="article:published_time" content="2024-07-04T07:39:59.000Z">
+<meta property="article:modified_time" content="2025-01-08T02:53:11.063Z">
+<meta property="article:author" content="安小歪">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://anxy.qyliu.top/2024-07-04/rss.webp"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://hexo.anxy.top/posts/14.html"><link rel="preconnect" href="https://cdn.smartcis.cn"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.2.2"><link rel="stylesheet" href="https://cdn.smartcis.cn/npm/@fortawesome/fontawesome-free@6.6.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":150,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.smartcis.cn/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '通过RSS推送自己喜欢的文章',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><link rel="stylesheet" href="/css/anxy.css"><script async src="//at.alicdn.com/t/c/font_4754147_ahvd9ot6az.js"></script><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><link rel="stylesheet" href="https://npm.elemecdn.com/npm/hexo-butterfly-footer-beautify@1.0.0/lib/runtime.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="ANXYの小窝" type="application/atom+xml">
+</head><body><div id="web_bg" style="background-image: url(https://anxy.qyliu.top/background.jpeg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="https://anxy.qyliu.top/favicon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">16</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><svg class="icon" aria-hidden="true" style="width: 1.25em;height: 1.25em;margin-bottom: -4.5px;"><use xlink:href="#icon-home"></use></svg><i class="fa-fw icon-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><svg class="icon" aria-hidden="true" style="width: 1.25em;height: 1.25em;margin-bottom: -4.5px;"><use xlink:href="#icon-icon_wenzhang"></use></svg><i class="fa-fw icon-icon_wenzhang"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><svg class="icon" aria-hidden="true" style="width: 1.25em;height: 1.25em;margin-bottom: -4.5px;"><use xlink:href="#icon-guidang"></use></svg><i class="fa-fw icon-guidang"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><svg class="icon" aria-hidden="true" style="width: 1.25em;height: 1.25em;margin-bottom: -4.5px;"><use xlink:href="#icon-biaoqian"></use></svg><i class="fa-fw icon-biaoqian"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><svg class="icon" aria-hidden="true" style="width: 1.25em;height: 1.25em;margin-bottom: -4.5px;"><use xlink:href="#icon-fenlei"></use></svg><i class="fa-fw icon-fenlei"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><svg class="icon" aria-hidden="true" style="width: 1.25em;height: 1.25em;margin-bottom: -4.5px;"><use xlink:href="#icon-wode"></use></svg><i class="fa-fw icon-wode"></i><span> 我的</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/diary/"><svg class="icon" aria-hidden="true" style="width: 1.25em;height: 1.25em;margin-bottom: -4.5px;"><use xlink:href="#icon-riji"></use></svg><i class="fa-fw icon-riji"></i><span> 日记</span></a></li><li><a class="site-page child" href="/link/"><svg class="icon" aria-hidden="true" style="width: 1.25em;height: 1.25em;margin-bottom: -4.5px;"><use xlink:href="#icon-tongxunlu"></use></svg><i class="fa-fw icon-tongxunlu"></i><span> 友人帐</span></a></li></ul></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><svg class="icon" aria-hidden="true" style="width: 1.25em;height: 1.25em;margin-bottom: -4.5px;"><use xlink:href="#icon-qita"></use></svg><i class="fa-fw icon-qita"></i><span> 其它</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/atom.xml"><svg class="icon" aria-hidden="true" style="width: 1.25em;height: 1.25em;margin-bottom: -4.5px;"><use xlink:href="#icon-rss"></use></svg><i class="fa-fw icon-rss"></i><span> RSS</span></a></li><li><a class="site-page child" href="/sitemap.xml"><svg class="icon" aria-hidden="true" style="width: 1.25em;height: 1.25em;margin-bottom: -4.5px;"><use xlink:href="#icon-ditu"></use></svg><i class="fa-fw icon-ditu"></i><span> Sitemap</span></a></li><li><a class="site-page child" href="/baidusitemap.xml"><svg class="icon" aria-hidden="true" style="width: 1.25em;height: 1.25em;margin-bottom: -4.5px;"><use xlink:href="#icon-ditu1"></use></svg><i class="fa-fw icon-ditu1"></i><span> Sitemap（百度）</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://anxy.qyliu.top/2024-07-04/rss.webp);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">ANXYの小窝</span></a><a class="nav-page-title" href="/"><span class="site-name">通过RSS推送自己喜欢的文章</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><svg class="icon" aria-hidden="true" style="width: 1.25em;height: 1.25em;margin-bottom: -4.5px;"><use xlink:href="#icon-home"></use></svg><i class="fa-fw icon-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><svg class="icon" aria-hidden="true" style="width: 1.25em;height: 1.25em;margin-bottom: -4.5px;"><use xlink:href="#icon-icon_wenzhang"></use></svg><i class="fa-fw icon-icon_wenzhang"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><svg class="icon" aria-hidden="true" style="width: 1.25em;height: 1.25em;margin-bottom: -4.5px;"><use xlink:href="#icon-guidang"></use></svg><i class="fa-fw icon-guidang"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><svg class="icon" aria-hidden="true" style="width: 1.25em;height: 1.25em;margin-bottom: -4.5px;"><use xlink:href="#icon-biaoqian"></use></svg><i class="fa-fw icon-biaoqian"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><svg class="icon" aria-hidden="true" style="width: 1.25em;height: 1.25em;margin-bottom: -4.5px;"><use xlink:href="#icon-fenlei"></use></svg><i class="fa-fw icon-fenlei"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><svg class="icon" aria-hidden="true" style="width: 1.25em;height: 1.25em;margin-bottom: -4.5px;"><use xlink:href="#icon-wode"></use></svg><i class="fa-fw icon-wode"></i><span> 我的</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/diary/"><svg class="icon" aria-hidden="true" style="width: 1.25em;height: 1.25em;margin-bottom: -4.5px;"><use xlink:href="#icon-riji"></use></svg><i class="fa-fw icon-riji"></i><span> 日记</span></a></li><li><a class="site-page child" href="/link/"><svg class="icon" aria-hidden="true" style="width: 1.25em;height: 1.25em;margin-bottom: -4.5px;"><use xlink:href="#icon-tongxunlu"></use></svg><i class="fa-fw icon-tongxunlu"></i><span> 友人帐</span></a></li></ul></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><svg class="icon" aria-hidden="true" style="width: 1.25em;height: 1.25em;margin-bottom: -4.5px;"><use xlink:href="#icon-qita"></use></svg><i class="fa-fw icon-qita"></i><span> 其它</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/atom.xml"><svg class="icon" aria-hidden="true" style="width: 1.25em;height: 1.25em;margin-bottom: -4.5px;"><use xlink:href="#icon-rss"></use></svg><i class="fa-fw icon-rss"></i><span> RSS</span></a></li><li><a class="site-page child" href="/sitemap.xml"><svg class="icon" aria-hidden="true" style="width: 1.25em;height: 1.25em;margin-bottom: -4.5px;"><use xlink:href="#icon-ditu"></use></svg><i class="fa-fw icon-ditu"></i><span> Sitemap</span></a></li><li><a class="site-page child" href="/baidusitemap.xml"><svg class="icon" aria-hidden="true" style="width: 1.25em;height: 1.25em;margin-bottom: -4.5px;"><use xlink:href="#icon-ditu1"></use></svg><i class="fa-fw icon-ditu1"></i><span> Sitemap（百度）</span></a></li></ul></div></div></div><div id="nav-right"><div id="search-button"><span class="site-page social-icon search"><svg class="icon" aria-hidden="true" style="width: 1.25em;height: 1.25em;margin-bottom: -4.5px;margin-bottom: -4.5px;"><use xlink:href="#icon-icon-sousuo"></use></svg></span></div><div><a class="site-page social-icon search" href="javascript:;" onclick="toggleWinbox()" title="切换背景-换一种感觉。"><svg class="icon" aria-hidden="true" style="width: 21px;height: 21px;margin-bottom: -4.5px;margin-left: 10px;"><use xlink:href="#icon-xiangce"></use></svg></a></div><div id="toggle-menu"><span class="site-page"><svg viewBox="0 0 1024 1024" style="width: 1em; height: 1em; margin: 0 -1px -2px 0;"><use xlink:href="#icon-mulu">     </use></svg></span></div></div></nav><div id="post-info"><h1 class="post-title">通过RSS推送自己喜欢的文章</h1><div id="post-meta"></div><div class="meta-firstline"><span class="post-meta-date"><svg viewBox="0 0 1024 1024" style="width: 1em; height: 1em; margin: 0 4px -2px 0;"><use xlink:href="#icon-rili"> // 用于创建日期的图标</use></svg><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-07-04T07:39:59.000Z" title="发表于 2024-07-04 15:39:59">2024-07-04</time><span class="post-meta-separator">|</span><svg viewBox="0 0 1024 1024" style="width: 1em; height: 1em; margin: 0 4px -2px 0;"><use xlink:href="#icon-gengxin"> // 用于更新时间的图标</use></svg><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-01-08T02:53:11.063Z" title="更新于 2025-01-08 10:53:11">2025-01-08</time></span><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><svg viewBox="0 0 1024 1024" style="width: 1em; height: 1em; margin: 0 4px -2px 0;"><use xlink:href="#icon-wenzizishu"></use></svg><span class="post-meta-label">总字数:</span><span class="word-count">864</span><span class="post-meta-separator">|</span><svg viewBox="0 0 1024 1024" style="width: 1em; height: 1em; margin: 0 -1px -2px 0;"><use xlink:href="#icon-shizhong"></use></svg><span class="post-meta-label">阅读时长:</span><span>2分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><svg viewBox="0 0 1024 1024" style="width: 1em; height: 1em; margin: 0 -1px -2px 0;"><use xlink:href="#icon-liulanjilu"> // 用于浏览记录的图标</use></svg><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;已经过了&quot;,&quot;messageNext&quot;:&quot;天自上次更新，文章内容可能已过时。&quot;,&quot;postUpdate&quot;:&quot;2025-01-08 10:53:11&quot;}" hidden></div><h1 id="项目地址"><a href="#项目地址" class="headerlink" title="项目地址"></a><a target="_blank" rel="noopener" href="https://github.com/shangskr/RSS-Subscription-Email-Notification">项目地址</a></h1><h1 id="RSS-Feed-Checker"><a href="#RSS-Feed-Checker" class="headerlink" title="RSS Feed Checker"></a>RSS Feed Checker</h1><p>该项目用来订阅自己喜欢的博主的文章，避免不知道其啥时候更新新的文章，<br>这是一个用于检查 RSS 源并发送电子邮件通知的项目。项目使用 GitHub Actions 定期运行，检查指定的 RSS 源，并在发现新内容时发送电子邮件通知。</p>
+<ul>
+<li>需要注意，fork本项目之后，请删除check这个文件夹，并且在rss_list.txt文件内填写需要检查的 RSS URL，运行之后就会自动生成check文件</li>
+<li>另外，第一次运行之后发给你的邮箱通知内容会是全部的rss源的所有文章，不要在意，这只是在‘标记’~第二次运行之后，他就不会显示所有的文章了<h1 id="我们的另外一款产品Subscribe-to-RSS-Notifications-plus"><a href="#我们的另外一款产品Subscribe-to-RSS-Notifications-plus" class="headerlink" title="我们的另外一款产品Subscribe-to-RSS-Notifications-plus"></a>我们的另外一款产品<a target="_blank" rel="noopener" href="https://github.com/shangskr/Subscribe-to-RSS-Notifications-plus">Subscribe-to-RSS-Notifications-plus</a></h1></li>
+<li>另外一款产品可以为其他人订阅rss文章，并且可以通过issues提交邮箱（实现邮箱通知），并且您可以随时关闭issue<h2 id="举个例子"><a href="#举个例子" class="headerlink" title="举个例子"></a>举个例子</h2></li>
+<li>比如我在2024年6月29日第一次运行了该项目，那么发送给你的邮箱通知内容会是全部的rss源的所有文章，（但是你想要的并不是所有的文章————别急）假设我要在2024年7月1日再次（第二次）运行该项目，但是在这期间你自己订阅的rss源更新了3篇文章，那么这次邮箱发给你的内容就仅仅有这3篇新文章，也就是和上一次作对比（永远和前几次作对比——应该是这样的）如果在这期间你订阅的rss源没有更新文章，那么就不会给你发邮件通知（一开始是通知来着，但是频繁发邮箱·咳咳，就给去掉了）</li>
+</ul>
+<h2 id="记录"><a href="#记录" class="headerlink" title="记录"></a>记录</h2><ul>
+<li>2024年7月2日16:56:11删除feed.txt文件该文件用来存放类似这样的rss’<a target="_blank" rel="noopener" href="https://tianli-blog.club/feed/">https://tianli-blog.club/feed/</a>‘ 这样类似的rss源链接的使用方法请见《使用方法的3.5》</li>
+<li>check文件中生成的数字是 Unix 时间戳，这种时间戳表示自 1970 年 1 月 1 日（也称为 Unix 纪元）以来的秒数，如果你想查看这些时间戳对应的具体日期可以转换（方法不记）</li>
+</ul>
+<h2 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h2><ul>
+<li>定期检查指定的 RSS 源</li>
+<li>发送电子邮件通知</li>
+<li>自动更新最近检查时间</li>
+<li>新增 User-Agent 字段的值表示请求是由一个Windows 10操作系统上的Chrome浏览器发起的请求。</li>
+</ul>
+<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><h4 id="1-克隆项目"><a href="#1-克隆项目" class="headerlink" title="1. 克隆项目"></a>1. 克隆项目</h4><h4 id="2-删除check文件夹"><a href="#2-删除check文件夹" class="headerlink" title="2. 删除check文件夹"></a>2. 删除check文件夹</h4><h4 id="3-在rss-list-txt文件内填写需要检查的-RSS-URL"><a href="#3-在rss-list-txt文件内填写需要检查的-RSS-URL" class="headerlink" title="3. 在rss_list.txt文件内填写需要检查的 RSS URL"></a>3. 在rss_list.txt文件内填写需要检查的 RSS URL</h4><h4 id="3-5-如果有些链接不能正常获取解析，那么你可将其现添加到rss-list-txt文件，然后进入check-rss-py文件的18到24行将不能正常获取解析的链接再填写进去。"><a href="#3-5-如果有些链接不能正常获取解析，那么你可将其现添加到rss-list-txt文件，然后进入check-rss-py文件的18到24行将不能正常获取解析的链接再填写进去。" class="headerlink" title="3.5 如果有些链接不能正常获取解析，那么你可将其现添加到rss_list.txt文件，然后进入check_rss.py文件的18到24行将不能正常获取解析的链接再填写进去。"></a>3.5 如果有些链接不能正常获取解析，那么你可将其现添加到rss_list.txt文件，然后进入check_rss.py文件的18到24行将不能正常获取解析的链接再填写进去。</h4><h4 id="4-设置环境变量"><a href="#4-设置环境变量" class="headerlink" title="4. 设置环境变量"></a>4. 设置环境变量</h4><ul>
+<li>EMAIL_USER: 发电子邮件的地址</li>
+<li>EMAIL_PASS: 电子邮件‘密码’（我用的outlook的SMTP服务）也就是应用码</li>
+<li>EMAIL_RECIPIENT: 收件人电子邮件地址</li>
+<li>SMTP_SERVER: SMTP 服务器地址（我用的outlook的，自行百度）SMTP服务器 ：smtp.office365.com</li>
+<li>SMTP_PORT: SMTP 服务器端口（我用的outlook的，自行百度）端口 ：587<h4 id="5-运行工程流文件"><a href="#5-运行工程流文件" class="headerlink" title="5.运行工程流文件"></a>5.运行工程流文件</h4></li>
+<li>需要的设置也就不说了，都是老规矩了！<h4 id="如果在使用过程中遇到任何问题或有任何建议，欢迎提交Issues。"><a href="#如果在使用过程中遇到任何问题或有任何建议，欢迎提交Issues。" class="headerlink" title="如果在使用过程中遇到任何问题或有任何建议，欢迎提交Issues。"></a>如果在使用过程中遇到任何问题或有任何建议，欢迎提交Issues。</h4></li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__title"><span class="post-copyright-info"><h>通过RSS推送自己喜欢的文章</h></span></div><div class="post-copyright__type"><span class="post-copyright-info"><a href="https://hexo.anxy.top/posts/14.html">https://hexo.anxy.top/posts/14.html</a></span></div><div class="post-copyright-m"><div class="post-copyright-m-info"><div class="post-copyright-a"><h>作者</h><div class="post-copyright-cc-info"><h>安小歪</h></div></div><div class="post-copyright-c"><h>发布于</h><div class="post-copyright-cc-info"><h>2024-07-04</h></div></div><div class="post-copyright-u"><h>更新于</h><div class="post-copyright-cc-info"><h>2025-01-08</h></div></div><div class="post-copyright-c"><h>许可协议</h><div class="post-copyright-cc-info"><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a rel="noopener" target="_blank" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div></div></div></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="https://anxy.qyliu.top/2024-07-04/rss.webp" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.smartcis.cn/npm/butterfly-extsrc@1.1.4/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.smartcis.cn/npm/butterfly-extsrc@1.1.4/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/posts/15.html" title="使用action+gh_issue_api完成订阅功能"><img class="cover" src="https://anxy.qyliu.top/2024-07-04/rssplus.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">使用action+gh_issue_api完成订阅功能</div></div><div class="info-2"><div class="info-item-1">项目地址Subscribe-to-RSS-Notifications-plus 一款基于gtihub实现的rss订阅通过 gh issues api实现邮箱通知 如果您感兴趣可以看看上一代产品RSS-Subscription-Email-Notification 上一代产品是可以为自己订阅一些喜欢的文章，这一代产品可以为其他人或者自己订阅喜欢的文章并且邮箱通知 用户可以通过发送一定格式的issues来实现订阅，也可以发表自己喜欢的rss源在issues中（我将会添加） issues您可以随时关闭，关闭之后您将不会再收到订阅通知。提交issues注意 issue 标题必须是：订阅 RSS 更新通知 Issue 必须带有 “subscribe” 标签 Issue 必须处于打开（open）状态 Issue 正文：必须有必要的格式issues格式（必须含有以下两条） 邮箱地址: your_email@example.com 订阅原因（或者是：添加rss源）: 我对您的 RSS 更新很感兴趣，希望能及时收到通知.（rss源url）功能 自动获取issues中的邮箱 定期检查指定的 RSS...</div></div></div></a><a class="pagination-related" href="/posts/13.html" title="静态即刻备份"><img class="cover" src="https://anxy.qyliu.top/2024-06-29/cover.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">静态即刻备份</div></div><div class="info-2"><div class="info-item-1">即刻短文迁移备份因为静态的即刻加载太慢了，所以决定删去这一部分！安知鱼的即刻方案css1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192939495969798/* 颜色 */:root &#123;  --anzhiyu-theme-op: #4259ef23;  --anzhiyu-gray-op: #9999992b;  --anzhiyu-theme-top: var(--anzhiyu-theme);  --anzhiyu-white: #fff;  --anzhiyu-white-op: rgba(255, 255, 255, 0.2);  --anzhiyu-black: #000;  --anzhiyu-black-op: rgba(0, 0, 0, 0.2); ...</div></div></div></a></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="https://anxy.qyliu.top/favicon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">安小歪</div><div class="author-info-description">重新开始吧！</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">16</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/shangskr"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/shangskr" target="_blank" title="icon-github"><svg class="icon" aria-hidden="true" style="width: 25px;margin-bottom: -70px;margin-top: -100px;"><use xlink:href="#icon-github"></use></svg></a><a class="social-icon" href="mailto:2622979530@qq.com" target="_blank" title="icon-youjian"><svg class="icon" aria-hidden="true" style="width: 25px;margin-bottom: -70px;margin-top: -100px;"><use xlink:href="#icon-youjian"></use></svg></a><a class="social-icon" href="/atom.xml" target="_blank" title="icon-rss"><svg class="icon" aria-hidden="true" style="width: 25px;margin-bottom: -70px;margin-top: -100px;"><use xlink:href="#icon-rss"></use></svg></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><svg viewBox="0 0 1024 1024" style="width: 1em; height: 1em; margin: 0 -1px -2px 0;"><use xlink:href="#icon-mulu"></use></svg><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E5%9C%B0%E5%9D%80"><span class="toc-number">1.</span> <span class="toc-text">项目地址</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#RSS-Feed-Checker"><span class="toc-number">2.</span> <span class="toc-text">RSS Feed Checker</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%88%91%E4%BB%AC%E7%9A%84%E5%8F%A6%E5%A4%96%E4%B8%80%E6%AC%BE%E4%BA%A7%E5%93%81Subscribe-to-RSS-Notifications-plus"><span class="toc-number">3.</span> <span class="toc-text">我们的另外一款产品Subscribe-to-RSS-Notifications-plus</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BE%E4%B8%AA%E4%BE%8B%E5%AD%90"><span class="toc-number">3.1.</span> <span class="toc-text">举个例子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%B0%E5%BD%95"><span class="toc-number">3.2.</span> <span class="toc-text">记录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD"><span class="toc-number">3.3.</span> <span class="toc-text">功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-number">3.4.</span> <span class="toc-text">使用方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%85%8B%E9%9A%86%E9%A1%B9%E7%9B%AE"><span class="toc-number">3.4.0.1.</span> <span class="toc-text">1. 克隆项目</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%88%A0%E9%99%A4check%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="toc-number">3.4.0.2.</span> <span class="toc-text">2. 删除check文件夹</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%9C%A8rss-list-txt%E6%96%87%E4%BB%B6%E5%86%85%E5%A1%AB%E5%86%99%E9%9C%80%E8%A6%81%E6%A3%80%E6%9F%A5%E7%9A%84-RSS-URL"><span class="toc-number">3.4.0.3.</span> <span class="toc-text">3. 在rss_list.txt文件内填写需要检查的 RSS URL</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-5-%E5%A6%82%E6%9E%9C%E6%9C%89%E4%BA%9B%E9%93%BE%E6%8E%A5%E4%B8%8D%E8%83%BD%E6%AD%A3%E5%B8%B8%E8%8E%B7%E5%8F%96%E8%A7%A3%E6%9E%90%EF%BC%8C%E9%82%A3%E4%B9%88%E4%BD%A0%E5%8F%AF%E5%B0%86%E5%85%B6%E7%8E%B0%E6%B7%BB%E5%8A%A0%E5%88%B0rss-list-txt%E6%96%87%E4%BB%B6%EF%BC%8C%E7%84%B6%E5%90%8E%E8%BF%9B%E5%85%A5check-rss-py%E6%96%87%E4%BB%B6%E7%9A%8418%E5%88%B024%E8%A1%8C%E5%B0%86%E4%B8%8D%E8%83%BD%E6%AD%A3%E5%B8%B8%E8%8E%B7%E5%8F%96%E8%A7%A3%E6%9E%90%E7%9A%84%E9%93%BE%E6%8E%A5%E5%86%8D%E5%A1%AB%E5%86%99%E8%BF%9B%E5%8E%BB%E3%80%82"><span class="toc-number">3.4.0.4.</span> <span class="toc-text">3.5 如果有些链接不能正常获取解析，那么你可将其现添加到rss_list.txt文件，然后进入check_rss.py文件的18到24行将不能正常获取解析的链接再填写进去。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E8%AE%BE%E7%BD%AE%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-number">3.4.0.5.</span> <span class="toc-text">4. 设置环境变量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E8%BF%90%E8%A1%8C%E5%B7%A5%E7%A8%8B%E6%B5%81%E6%96%87%E4%BB%B6"><span class="toc-number">3.4.0.6.</span> <span class="toc-text">5.运行工程流文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A6%82%E6%9E%9C%E5%9C%A8%E4%BD%BF%E7%94%A8%E8%BF%87%E7%A8%8B%E4%B8%AD%E9%81%87%E5%88%B0%E4%BB%BB%E4%BD%95%E9%97%AE%E9%A2%98%E6%88%96%E6%9C%89%E4%BB%BB%E4%BD%95%E5%BB%BA%E8%AE%AE%EF%BC%8C%E6%AC%A2%E8%BF%8E%E6%8F%90%E4%BA%A4Issues%E3%80%82"><span class="toc-number">3.4.0.7.</span> <span class="toc-text">如果在使用过程中遇到任何问题或有任何建议，欢迎提交Issues。</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><svg viewBox="0 0 1024 1024" style="width: 1em; height: 1em; margin: 0 -1px -2px 0;"><use xlink:href="#icon-gengxin"></use></svg><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/16.html" title="论坛自动签到"><img src="https://anxy.qyliu.top/2024-08-17/discuz-checkin.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="论坛自动签到"/></a><div class="content"><a class="title" href="/posts/16.html" title="论坛自动签到">论坛自动签到</a><time datetime="2024-08-17T06:30:40.000Z" title="发表于 2024-08-17 14:30:40">2024-08-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/15.html" title="使用action+gh_issue_api完成订阅功能"><img src="https://anxy.qyliu.top/2024-07-04/rssplus.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="使用action+gh_issue_api完成订阅功能"/></a><div class="content"><a class="title" href="/posts/15.html" title="使用action+gh_issue_api完成订阅功能">使用action+gh_issue_api完成订阅功能</a><time datetime="2024-07-04T07:50:00.000Z" title="发表于 2024-07-04 15:50:00">2024-07-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/14.html" title="通过RSS推送自己喜欢的文章"><img src="https://anxy.qyliu.top/2024-07-04/rss.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="通过RSS推送自己喜欢的文章"/></a><div class="content"><a class="title" href="/posts/14.html" title="通过RSS推送自己喜欢的文章">通过RSS推送自己喜欢的文章</a><time datetime="2024-07-04T07:39:59.000Z" title="发表于 2024-07-04 15:39:59">2024-07-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/13.html" title="静态即刻备份"><img src="https://anxy.qyliu.top/2024-06-29/cover.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="静态即刻备份"/></a><div class="content"><a class="title" href="/posts/13.html" title="静态即刻备份">静态即刻备份</a><time datetime="2024-06-29T05:58:53.000Z" title="发表于 2024-06-29 13:58:53">2024-06-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/12.html" title="天气电子邮件通知"><img src="https://anxy.qyliu.top/2024-06-20/cover.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="天气电子邮件通知"/></a><div class="content"><a class="title" href="/posts/12.html" title="天气电子邮件通知">天气电子邮件通知</a><time datetime="2024-06-20T03:52:02.000Z" title="发表于 2024-06-20 11:52:02">2024-06-20</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By 安小歪</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button><button id="go-down" type="button" title="直达底部" onclick="btf.scrollToDest(document.body.scrollHeight, 500)"><i class="fas fa-arrow-down">    </i></button></div></div><div><script src="/js/utils.js?v=5.2.2"></script><script src="/js/main.js?v=5.2.2"></script><div class="js-pjax"><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.isShuoshuo
+  const option = null
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo.anxy.top/',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = (el = document, path = location.pathname) => {
+    twikoo.init({
+      el: el.querySelector('#twikoo-wrap'),
+      envId: 'https://twikoo.anxy.top/',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      },
+      ...option,
+      path: isShuoshuo ? path : (option && option.path) || path
+    })
+
+    
+
+    isShuoshuo && (window.shuoshuoComment.destroyTwikoo = () => {
+      if (el.children.length) {
+        el.innerHTML = ''
+        el.classList.add('no-comment')
+      }
+    })
+  }
+
+  const loadTwikoo = (el, path) => {
+    if (typeof twikoo === 'object') setTimeout(() => init(el, path), 0)
+    else btf.getScript('https://cdn.smartcis.cn/npm/twikoo@1.6.39/dist/twikoo.all.min.js').then(() => init(el, path))
+  }
+
+  if (isShuoshuo) {
+    'Twikoo' === 'Twikoo'
+      ? window.shuoshuoComment = { loadComment: loadTwikoo }
+      : window.loadOtherComment = loadTwikoo
+    return
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script async data-pjax src="/js/anxy.js"></script><script src="https://cdn.smartcis.cn/gh/nextapps-de/winbox/dist/winbox.bundle.min.js"></script><script src="https://cdn.smartcis.cn/npm/pjax@0.2.8/pjax.min.js"></script><script>(() => {
+  const pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => fn())
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      pjax.loadUrl('/404.html')
+    }
+  })
+})()</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=5.2.2"></script></div></div><!-- hexo injector body_end start --><script async src="//at.alicdn.com/t/c/font_4754147_d78xd7ifd7o.js"></script><script data-pjax>
+  function butterfly_footer_beautify_injector_config(){
+    var parent_div_git = document.getElementById('footer-wrap');
+    var item_html = '<div id="workboard"></div><p id="ghbdages"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px" data-title="博客框架为Hexo_v5.4.0" title=""><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&amp;logo=hexo" alt=""/></a><a class="github-badge" target="_blank" href="https://butterfly.js.org/" style="margin-inline:5px" data-title="主题版本Butterfly_v3.8.2" title=""><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&amp;logo=bitdefender" alt=""/></a><a class="github-badge" target="_blank" href="https://www.jsdelivr.com/" style="margin-inline:5px" data-title="本站使用JsDelivr为静态资源提供CDN加速" title=""><img src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&amp;logo=jsDelivr" alt=""/></a><a class="github-badge" target="_blank" href="https://vercel.com/" style="margin-inline:5px" data-title="本站采用双线部署，默认线路托管于Vercel" title=""><img src="https://img.shields.io/badge/Hosted-Vercel-brightgreen?style=flat&amp;logo=Vercel" alt=""/></a><a class="github-badge" target="_blank" href="https://vercel.com/" style="margin-inline:5px" data-title="本站采用双线部署，联通线路托管于Coding" title=""><img src="https://img.shields.io/badge/Hosted-Coding-0cedbe?style=flat&amp;logo=Codio" alt=""/></a><a class="github-badge" target="_blank" href="https://github.com/" style="margin-inline:5px" data-title="本站项目由Github托管" title=""><img src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&amp;logo=GitHub" alt=""/></a><a class="github-badge" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="margin-inline:5px" data-title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可" title=""><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&amp;logo=Claris" alt=""/></a></p>';
+    console.log('已挂载butterfly_footer_beautify')
+    parent_div_git.insertAdjacentHTML("beforeend",item_html)
+    }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_footer_beautify_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_footer_beautify_injector_config();
+  }
+  </script><script async src="https://npm.elemecdn.com/npm/hexo-butterfly-footer-beautify@1.0.0/lib/runtime.js"></script><!-- hexo injector body_end end --></body></html>
