@@ -1,4 +1,3 @@
-// 随机文章js
 const CACHE_EXPIRATION_TIME = 12 * 60 * 60 * 1000;  // 缓存过期时间，12小时
 // 随机文章js
 const anxy = {
