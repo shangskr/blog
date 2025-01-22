@@ -19,17 +19,7 @@
     border-radius: 18px;
     border: var(--border-style);
   }
-  
-  /* 文章页、归档页、普通页面 */
-  div#post,
-  div#page,
-  div#archive {
-    background: var(--trans-light);
-    backdrop-filter: var(--backdrop-filter);
-    border: var(--border-style);
-    border-radius: 20px;
-  }
-  
+    
   /* 导航栏 */
   #page-header.nav-fixed #nav {
     background: rgba(255, 255, 255, 0.75);
