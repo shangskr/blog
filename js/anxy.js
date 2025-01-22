@@ -197,3 +197,9 @@ function toggleWinbox() {
     if (document.querySelector('#changeBgBox')) winbox.toggleClass('hide');
     else createWinbox();
 }
+
+// 博客刷新缓存按钮
+function refreshCache() {
+    if (confirm('是否确定刷新博文缓存')) location.reload(true)
+}
+
