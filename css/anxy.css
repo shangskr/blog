@@ -244,3 +244,72 @@ translate:-50%;
 .flink-item-name, .flink-item-desc {
   color: white!important;
 }
+
+/* 网站标题增强 */
+#nav .site-name {
+  position: relative;
+  font-size: 22px; /* 调整字体大小 */
+  display: inline-block; /* 使其能有大小和位置 */
+  font-weight: bold; /* 使文字加粗 */
+  transition: color 0.3s; /* 平滑的颜色变化 */
+  z-index: 2; /* 确保文字显示在背景上方 */
+  padding: 0 15px; /* 缩小左右内边距，减少左侧空白 */
+  border-radius: 20px; /* 圆角效果 */
+  line-height: 34px; /* 确保文字上下居中 */
+  vertical-align: middle; /* 确保垂直居中 */
+  overflow: hidden; /* 避免背景溢出 */
+  user-select: none; /* 禁止选择文字 */
+}
+
+/* 设置 ::before 伪元素，显示背景色 */
+#nav .site-name::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #65b0ff !important;
+  border-radius: 20px;
+  opacity: 0;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  transition: opacity 0.3s, transform 0.3s;
+  z-index: -1;
+}
+
+/* hover 时显示背景并稍微放大 */
+#nav .site-name:hover::before {
+  opacity: 1;
+  transform: scale(1.02);
+}
+
+/* hover 时突出显示文字，文字变为白色 */
+#nav .site-name:hover {
+  color: white !important;
+}
+
+/* 手机端样式调整 */
+@media (max-width: 768px) {
+  #nav .site-name {
+    font-size: 18px; /* 调整字体大小 */
+    padding: 0 10px; /* 进一步缩小内边距 */
+  }
+}
+
+
+/* 顶栏常驻 */
+.nav-fixed #nav{
+  transform: translateY(58px)!important;
+  -webkit-transform: translateY(58px)!important;
+  -moz-transform: translateY(58px)!important;
+  -ms-transform: translateY(58px)!important;
+  -o-transform: translateY(58px)!important;
+}
+#nav{
+  transition: none!important;
+  -webkit-transition: none!important;
+  -moz-transition: none!important;
+  -ms-transition: none!important;
+  -o-transition: none!important;
+}
+
