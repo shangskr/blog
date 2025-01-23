@@ -685,33 +685,42 @@ document.addEventListener('DOMContentLoaded', () => {
     btf.addEventListenerPjax(toggleMenu, 'click', () => { sidebarFn.open() })
   }
 
-  /**
-   * 複製時加上版權信息
-   */
-  const addCopyright = () => {
-    const { limitCount, languages, copy, copyrightEbable } = GLOBAL_CONFIG.copyright;
+/**
+ * 複製時加上版權信息
+ */
+const addCopyright = () => {
+  const { limitCount, languages, copy, copyrightEbable } = GLOBAL_CONFIG.copyright;
 
-    const handleCopy = e => {
-      if (copy) {
-        btf.snackbarShow(GLOBAL_CONFIG.copy.success);
-      }
-      if (copyrightEbable) {
-        e.preventDefault();
-        const copyFont = window.getSelection(0).toString();
-        let textFont = copyFont;
-        if (copyFont.length > limitCount) {
-          textFont = `${copyFont}\n\n\n${languages.author}\n${languages.link}${window.location.href}\n${languages.source}\n${languages.info}`;
-        }
-        if (e.clipboardData) {
-          return e.clipboardData.setData("text", textFont);
-        } else {
-          return window.clipboardData.setData("text", textFont);
-        }
-      }
-    };
+  const handleCopy = e => {
+    if (copy) {
+      // 修改提示文本
+      const successMessage = '复制成功，转载请标注本文地址';
+      
+      // 创建 snackbar 提示并包含链接，修改链接文字为红色
+      const snackbarMessage = `${successMessage} <a href='/privacy/' target='_blank' style="color: red; text-decoration: underline;">点击查看版权声明</a>`;
 
-    document.body.addEventListener("copy", handleCopy);
-  }
+      // 显示带有红色链接的 snackbar
+      btf.snackbarShow(snackbarMessage);
+    }
+    if (copyrightEbable) {
+      e.preventDefault();
+      const copyFont = window.getSelection(0).toString();
+      let textFont = copyFont;
+      if (copyFont.length > limitCount) {
+        textFont = `${copyFont}\n\n\n${languages.author}\n${languages.link}${window.location.href}\n${languages.source}\n${languages.info}`;
+      }
+      if (e.clipboardData) {
+        return e.clipboardData.setData("text", textFont);
+      } else {
+        return window.clipboardData.setData("text", textFont);
+      }
+    }
+  };
+
+  document.body.addEventListener("copy", handleCopy);
+}
+
+
 
   /**
    * 網頁運行時間
