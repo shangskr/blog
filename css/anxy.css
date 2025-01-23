@@ -440,3 +440,9 @@ transition: none!important;
   color: white !important;
   background-color: #E68282 !important;
 }
+
+/* 右侧悬浮按钮圆角 */ 
+#rightside > div > button,
+#rightside > div > a {
+    border-radius: 50%;
+}

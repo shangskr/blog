@@ -1,0 +1,248 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>privacy | ANXYの小窝</title><meta name="author" content="安小歪"><meta name="copyright" content="安小歪"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="版权声明版权声明Copyright © 2022 - 2025 By 安小歪  声明 | 版权协议为了保持文章质量，并秉持互联网的开放共享精神，本站所有原创文章均采用 CC 协议中的署名-非商业性使用-禁止演绎 4.0 国际 标准。我们希望通过这篇声明能够更加清晰地介绍本站的版权协议标准及使用要求，以便您合理使用本站的内容。  本站使用的技术本站使用了开源框架 Hexo 及其 Butterfly">
+<meta property="og:type" content="website">
+<meta property="og:title" content="privacy">
+<meta property="og:url" content="https://hexo.anxy.top/privacy/index.html">
+<meta property="og:site_name" content="ANXYの小窝">
+<meta property="og:description" content="版权声明版权声明Copyright © 2022 - 2025 By 安小歪  声明 | 版权协议为了保持文章质量，并秉持互联网的开放共享精神，本站所有原创文章均采用 CC 协议中的署名-非商业性使用-禁止演绎 4.0 国际 标准。我们希望通过这篇声明能够更加清晰地介绍本站的版权协议标准及使用要求，以便您合理使用本站的内容。  本站使用的技术本站使用了开源框架 Hexo 及其 Butterfly">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://anxy.qyliu.top/favicon.png">
+<meta property="article:published_time" content="2025-01-23T11:58:55.000Z">
+<meta property="article:modified_time" content="2025-01-23T12:33:05.218Z">
+<meta property="article:author" content="安小歪">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://anxy.qyliu.top/favicon.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://hexo.anxy.top/privacy/index.html"><link rel="preconnect" href="https://cdn.smartcis.cn"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.2.2"><link rel="stylesheet" href="https://cdn.smartcis.cn/npm/@fortawesome/fontawesome-free@6.6.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.smartcis.cn/npm/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.smartcis.cn/npm/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":150,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"copy":true,"copyrightEbable":false,"limitCount":150,"languages":{"author":"作者: 安小歪","link":"链接: ","source":"来源: ANXYの小窝","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-right"},
+  infinitegrid: {
+    js: 'https://cdn.smartcis.cn/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'privacy',
+  isPost: false,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  isShuoshuo: false
+}</script><link rel="stylesheet" href="/css/anxy.css"><script async src="//at.alicdn.com/t/c/font_4754147_3tlu1fiy4aq.js"></script><!-- hexo injector head_end start --><link rel="stylesheet" href="https://jsd.nmmsl.top/gh/shangskr/cdn-anxy-blog@v25.1.15/runtime.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="ANXYの小窝" type="application/atom+xml">
+</head><body><div id="web_bg" style="background-image: url(https://anxy.qyliu.top/background.jpeg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="https://anxy.qyliu.top/favicon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">16</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><svg class="icon" aria-hidden="true" style="width: 1.25em;height: 1.25em;margin-bottom: -4.5px;"><use xlink:href="#icon-home"></use></svg><i class="fa-fw icon-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><svg class="icon" aria-hidden="true" style="width: 1.25em;height: 1.25em;margin-bottom: -4.5px;"><use xlink:href="#icon-icon_wenzhang"></use></svg><i class="fa-fw icon-icon_wenzhang"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><svg class="icon" aria-hidden="true" style="width: 1.25em;height: 1.25em;margin-bottom: -4.5px;"><use xlink:href="#icon-guidang"></use></svg><i class="fa-fw icon-guidang"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><svg class="icon" aria-hidden="true" style="width: 1.25em;height: 1.25em;margin-bottom: -4.5px;"><use xlink:href="#icon-biaoqian"></use></svg><i class="fa-fw icon-biaoqian"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><svg class="icon" aria-hidden="true" style="width: 1.25em;height: 1.25em;margin-bottom: -4.5px;"><use xlink:href="#icon-fenlei"></use></svg><i class="fa-fw icon-fenlei"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><svg class="icon" aria-hidden="true" style="width: 1.25em;height: 1.25em;margin-bottom: -4.5px;"><use xlink:href="#icon-wode"></use></svg><i class="fa-fw icon-wode"></i><span> 我的</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/speaks/"><svg class="icon" aria-hidden="true" style="width: 1.25em;height: 1.25em;margin-bottom: -4.5px;"><use xlink:href="#icon-riji"></use></svg><i class="fa-fw icon-riji"></i><span> 日记</span></a></li><li><a class="site-page child" href="/link/"><svg class="icon" aria-hidden="true" style="width: 1.25em;height: 1.25em;margin-bottom: -4.5px;"><use xlink:href="#icon-tongxunlu"></use></svg><i class="fa-fw icon-tongxunlu"></i><span> 友人帐</span></a></li></ul></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><svg class="icon" aria-hidden="true" style="width: 1.25em;height: 1.25em;margin-bottom: -4.5px;"><use xlink:href="#icon-qita"></use></svg><i class="fa-fw icon-qita"></i><span> 其它</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/atom.xml"><svg class="icon" aria-hidden="true" style="width: 1.25em;height: 1.25em;margin-bottom: -4.5px;"><use xlink:href="#icon-rss"></use></svg><i class="fa-fw icon-rss"></i><span> RSS</span></a></li><li><a class="site-page child" href="/sitemap.xml"><svg class="icon" aria-hidden="true" style="width: 1.25em;height: 1.25em;margin-bottom: -4.5px;"><use xlink:href="#icon-ditu"></use></svg><i class="fa-fw icon-ditu"></i><span> Sitemap</span></a></li><li><a class="site-page child" href="/baidusitemap.xml"><svg class="icon" aria-hidden="true" style="width: 1.25em;height: 1.25em;margin-bottom: -4.5px;"><use xlink:href="#icon-ditu1"></use></svg><i class="fa-fw icon-ditu1"></i><span> Sitemap（百度）</span></a></li></ul></div></div></div></div><div class="page" id="body-wrap"><header class="not-home-page" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">ANXYの小窝</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><svg class="icon" aria-hidden="true" style="width: 1.25em;height: 1.25em;margin-bottom: -4.5px;"><use xlink:href="#icon-home"></use></svg><i class="fa-fw icon-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><svg class="icon" aria-hidden="true" style="width: 1.25em;height: 1.25em;margin-bottom: -4.5px;"><use xlink:href="#icon-icon_wenzhang"></use></svg><i class="fa-fw icon-icon_wenzhang"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><svg class="icon" aria-hidden="true" style="width: 1.25em;height: 1.25em;margin-bottom: -4.5px;"><use xlink:href="#icon-guidang"></use></svg><i class="fa-fw icon-guidang"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><svg class="icon" aria-hidden="true" style="width: 1.25em;height: 1.25em;margin-bottom: -4.5px;"><use xlink:href="#icon-biaoqian"></use></svg><i class="fa-fw icon-biaoqian"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><svg class="icon" aria-hidden="true" style="width: 1.25em;height: 1.25em;margin-bottom: -4.5px;"><use xlink:href="#icon-fenlei"></use></svg><i class="fa-fw icon-fenlei"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><svg class="icon" aria-hidden="true" style="width: 1.25em;height: 1.25em;margin-bottom: -4.5px;"><use xlink:href="#icon-wode"></use></svg><i class="fa-fw icon-wode"></i><span> 我的</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/speaks/"><svg class="icon" aria-hidden="true" style="width: 1.25em;height: 1.25em;margin-bottom: -4.5px;"><use xlink:href="#icon-riji"></use></svg><i class="fa-fw icon-riji"></i><span> 日记</span></a></li><li><a class="site-page child" href="/link/"><svg class="icon" aria-hidden="true" style="width: 1.25em;height: 1.25em;margin-bottom: -4.5px;"><use xlink:href="#icon-tongxunlu"></use></svg><i class="fa-fw icon-tongxunlu"></i><span> 友人帐</span></a></li></ul></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><svg class="icon" aria-hidden="true" style="width: 1.25em;height: 1.25em;margin-bottom: -4.5px;"><use xlink:href="#icon-qita"></use></svg><i class="fa-fw icon-qita"></i><span> 其它</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/atom.xml"><svg class="icon" aria-hidden="true" style="width: 1.25em;height: 1.25em;margin-bottom: -4.5px;"><use xlink:href="#icon-rss"></use></svg><i class="fa-fw icon-rss"></i><span> RSS</span></a></li><li><a class="site-page child" href="/sitemap.xml"><svg class="icon" aria-hidden="true" style="width: 1.25em;height: 1.25em;margin-bottom: -4.5px;"><use xlink:href="#icon-ditu"></use></svg><i class="fa-fw icon-ditu"></i><span> Sitemap</span></a></li><li><a class="site-page child" href="/baidusitemap.xml"><svg class="icon" aria-hidden="true" style="width: 1.25em;height: 1.25em;margin-bottom: -4.5px;"><use xlink:href="#icon-ditu1"></use></svg><i class="fa-fw icon-ditu1"></i><span> Sitemap（百度）</span></a></li></ul></div></div></div><div id="nav-right"><div id="search-button"><span class="site-page social-icon search"><svg class="icon" aria-hidden="true" style="width: 1.25em;height: 1.25em;margin-bottom: -4.5px;margin-bottom: -4.5px;"><use xlink:href="#icon-icon-sousuo">  </use></svg></span></div><div><a class="site-page social-icon search" href="javascript:;" onclick="toggleWinbox()" title="切换背景-换一种感觉。"><svg class="icon" aria-hidden="true" style="width: 21px;height: 21px;margin-bottom: -4.5px;margin-left: 10px;"><use xlink:href="#icon-xiangce"></use></svg></a></div><div id="toggle-menu"><span class="site-page"><svg viewBox="0 0 1024 1024" style="width: 1em; height: 1em; margin: 0 -1px -2px 0;"><use xlink:href="#icon-mulu">     </use></svg></span></div></div></nav><div id="page-site-info"><h1 id="site-title">privacy</h1></div></header><main class="layout hide-aside" id="content-inner"><div id="page"><div class="container" id="article-container"><h1 id="版权声明"><a href="#版权声明" class="headerlink" title="版权声明"></a>版权声明</h1><p><strong>版权声明</strong><br>Copyright © 2022 - 2025 By 安小歪</p>
+<hr>
+<h2 id="声明-版权协议"><a href="#声明-版权协议" class="headerlink" title="声明 | 版权协议"></a>声明 | 版权协议</h2><p>为了保持文章质量，并秉持互联网的开放共享精神，本站所有原创文章均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh">CC 协议中的署名-非商业性使用-禁止演绎 4.0 国际</a> 标准。我们希望通过这篇声明能够更加清晰地介绍本站的版权协议标准及使用要求，以便您合理使用本站的内容。</p>
+<hr>
+<h3 id="本站使用的技术"><a href="#本站使用的技术" class="headerlink" title="本站使用的技术"></a>本站使用的技术</h3><p>本站使用了开源框架 <strong>Hexo</strong> 及其 <strong>Butterfly 主题</strong>，并进行了个性化的魔改，以提升用户体验和页面美观。我们尊重原作者的辛勤付出，并鼓励大家在享受开源资源的同时，遵守相关的版权协议。</p>
+<hr>
+<h3 id="重要声明"><a href="#重要声明" class="headerlink" title="重要声明"></a>重要声明</h3><p><strong>本站不包含广告嵌入和商业行为，所有内容均为非盈利性质</strong>。我们强烈呼吁您在转载本站文章时，务必遵循上述协议。违反协议的行为不仅会损害原作者的创作热情，还会影响整个版权环境。</p>
+<hr>
+<h2 id="使用指南"><a href="#使用指南" class="headerlink" title="使用指南"></a>使用指南</h2><h3 id="哪些文章适用本协议？"><a href="#哪些文章适用本协议？" class="headerlink" title="哪些文章适用本协议？"></a>哪些文章适用本协议？</h3><p>所有原创内容均在文章标题顶部以及结尾的版权说明部分明确标示。原创内容的非商业性转载必须为完整转载，并标注出处的 <a href="#">带有完整 URL 链接</a> 或 <a href="#">访问原文</a> 之类字样的超链接。在引用本站内容作为参考资料时，您可以摘录所需部分，但需标明出处。</p>
+<h3 id="你可以做什么？"><a href="#你可以做什么？" class="headerlink" title="你可以做什么？"></a>你可以做什么？</h3><p>只要您遵守本页的许可协议，您可以自由地共享本站的文章内容——在任何媒介以任何形式复制、发行本作品，无需通知作者。</p>
+<h3 id="你需要遵守什么样的许可？"><a href="#你需要遵守什么样的许可？" class="headerlink" title="你需要遵守什么样的许可？"></a>你需要遵守什么样的许可？</h3><h4 id="署名"><a href="#署名" class="headerlink" title="署名"></a>署名</h4><p>您必须标注内容的来源，并在文章开头（或显著位置）标明原文章链接（建议使用超链接以提升阅读体验）。</p>
+<h4 id="禁止商用"><a href="#禁止商用" class="headerlink" title="禁止商用"></a>禁止商用</h4><p>本站内容免费向所有用户提供，分享本站文章时禁止商业性使用，禁止在转载页面中插入广告（例如 Google 广告、百度广告），禁止任何形式的付费阅读行为（如关注公众号、下载 App 后观看文章）。</p>
+<h4 id="禁止演绎"><a href="#禁止演绎" class="headerlink" title="禁止演绎"></a>禁止演绎</h4><ul>
+<li>分享全部内容（无修改）时，您需要在文章开头部分（或显著位置）标注原文章链接（建议使用超链接）。</li>
+<li>分享部分内容或进行衍生创作时，本站的原创文章衍生品禁止公开分享和分发。如有修改建议，可以在对应文章下留言。如有衍生创作需求，请通过评论联系作者。</li>
+<li>作为参考资料截取部分内容时，您可以无需完整转载，摘录所需的部分内容，但需标明出处。</li>
+</ul>
+<hr>
+<h2 id="版权保护的内容"><a href="#版权保护的内容" class="headerlink" title="版权保护的内容"></a>版权保护的内容</h2><p><strong>包括但不限于</strong>：</p>
+<ul>
+<li>文章封面图片  </li>
+<li>文章标题和正文  </li>
+<li>站点图片素材（不含主题自带素材）</li>
+</ul>
+<hr>
+<h2 id="例外情况"><a href="#例外情况" class="headerlink" title="例外情况"></a>例外情况</h2><p>本着友好互助的原则，被本站友链收录的博客允许其文章内容的衍生品分享和分发，但仍需标明出处。您也可以在博客文章下方留言，要求授权分享和分发博文的衍生品，并标注您网站的地址。</p>
+<p>关于主题样式的版权信息，请查阅 <a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly/">Butterfly 主题说明</a>。</p>
+<hr>
+<h2 id="网站源代码协议"><a href="#网站源代码协议" class="headerlink" title="网站源代码协议"></a>网站源代码协议</h2><p>本站网站源代码（仅包含 CSS、JS 部分）遵循 <a target="_blank" rel="noopener" href="https://www.gnu.org/licenses/gpl-3.0.html">GPL 协议</a>。</p>
+</div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2025 By 安小歪</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="refresh-cache" type="button" title="刷新缓存" onclick="refreshCache()"><i class="fas fa-refresh fa-spin">           </i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button><button id="go-down" type="button" title="直达底部" onclick="btf.scrollToDest(document.body.scrollHeight, 500)"><i class="fas fa-arrow-down">    </i></button></div></div><div class="js-pjax" id="rightMenu"><div class="rightMenu-group rightMenu-small"><a class="rightMenu-item" href="javascript:window.history.back();"><i class="fa fa-arrow-left"></i></a><a class="rightMenu-item" href="javascript:window.history.forward();"><i class="fa fa-arrow-right"></i></a><a class="rightMenu-item" href="javascript:window.location.reload();"><i class="fa fa-refresh"></i></a><a class="rightMenu-item" href="javascript:void(0);" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });"><i class="fa fa-arrow-up"></i></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-text"><a class="rightMenu-item" href="javascript:rmf.copySelect();"><i class="fa fa-copy"></i><span>复制</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-too"><a class="rightMenu-item" href="javascript:window.open(window.getSelection().toString());window.location.reload();"><i class="fa fa-link"></i><span>转到链接</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-paste"><a class="rightMenu-item" href="javascript:rmf.paste()"><i class="fa fa-copy"></i><span>粘贴</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-post"><a class="rightMenu-item" href="javascript:rmf.copyWordsLink()"><i class="fa fa-link"></i><span>复制本文地址</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-to"><a class="rightMenu-item" href="javascript:rmf.openWithNewTab()"><i class="fa fa-window-restore"></i><span>新窗口打开</span></a><a class="rightMenu-item" href="javascript:rmf.open()"><i class="fa fa-link"></i><span>转到链接</span></a><a class="rightMenu-item" href="javascript:rmf.copyLink()"><i class="fa fa-copy"></i><span>复制链接</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-img"><a class="rightMenu-item" href="javascript:rmf.saveAs()"><i class="fa fa-download"></i><span>保存图片</span></a><a class="rightMenu-item" href="javascript:rmf.openWithNewTab()"><i class="fa fa-window-restore"></i><span>在新窗口打开</span></a><a class="rightMenu-item" href="javascript:rmf.copyLink()"><i class="fa fa-copy"></i><span>复制图片链接</span></a></div><div class="rightMenu-group rightMenu-line"><a class="rightMenu-item" href="javascript:rmf.translate();"><i class="iconfont icon-fanti"></i><span>繁简转换</span></a></div></div><div><script src="/js/utils.js?v=5.2.2"></script><script src="/js/main.js?v=5.2.2"></script><script src="/js/tw_cn.js?v=5.2.2"></script><script src="https://cdn.smartcis.cn/npm/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.smartcis.cn/npm/node-snackbar@0.1.16/dist/snackbar.min.js"></script><div class="js-pjax"></div><script type="text/javascript" src="https://cdn.smartcis.cn/npm/jquery@3.7.1/dist/jquery.min.js"></script><script async data-pjax src="/js/anxy.js"></script><script src="https://cdn.smartcis.cn/gh/nextapps-de/winbox/dist/winbox.bundle.min.js"></script><script src="https://cdn.smartcis.cn/npm/pjax@0.2.8/pjax.min.js"></script><script>(() => {
+  const pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => fn())
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      pjax.loadUrl('/404.html')
+    }
+  })
+})()</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=5.2.2"></script></div></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_footer_beautify_injector_config(){
+    var parent_div_git = document.getElementById('footer-wrap');
+    var item_html = '<div id="workboard"></div><p id="ghbdages"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px" data-title="博客框架为Hexo_v5.4.0" title=""><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&amp;logo=hexo" alt=""/></a><a class="github-badge" target="_blank" href="https://butterfly.js.org/" style="margin-inline:5px" data-title="主题版本Butterfly_v3.8.2" title=""><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&amp;logo=bitdefender" alt=""/></a><a class="github-badge" target="_blank" href="https://www.dogecloud.com/" style="margin-inline:5px" data-title="本站使用dogecloud为静态资源提供CDN加速" title=""><img src="https://img.shields.io/badge/%E5%A4%9A%E5%90%89%E4%BA%91-CDN-d021d6?style=flat&amp;logo=Dogecoin" alt=""/></a><a class="github-badge" target="_blank" href="https://vercel.com/" style="margin-inline:5px" data-title="本站采用双线部署，默认线路托管于Vercel" title=""><img src="https://img.shields.io/badge/Hosted-Vercel-brightgreen?style=flat&amp;logo=Vercel" alt=""/></a><a class="github-badge" target="_blank" href="https://vercel.com/" style="margin-inline:5px" data-title="本站采用双线部署，联通线路托管于Coding" title=""><img src="https://img.shields.io/badge/Hosted-Coding-0cedbe?style=flat&amp;logo=Codio" alt=""/></a><a class="github-badge" target="_blank" href="https://github.com/" style="margin-inline:5px" data-title="本站项目由Github托管" title=""><img src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&amp;logo=GitHub" alt=""/></a><a class="github-badge" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="margin-inline:5px" data-title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可" title=""><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&amp;logo=Claris" alt=""/></a></p>';
+    console.log('已挂载butterfly_footer_beautify')
+    parent_div_git.insertAdjacentHTML("beforeend",item_html)
+    }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_footer_beautify_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_footer_beautify_injector_config();
+  }
+  </script><script async src="https://jsd.nmmsl.top/gh/shangskr/cdn-anxy-blog@v25.1.15/runtime.js"></script><script async src="//at.alicdn.com/t/c/font_4754147_d78xd7ifd7o.js"></script><!-- hexo injector body_end end --></body></html>
