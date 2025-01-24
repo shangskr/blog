@@ -237,14 +237,6 @@ height: 100px;
 }
 }
 
-/* 友链随机颜色css */
-#article-container .flink .flink-list {
-text-align: left!important;
-}
-.flink-item-name, .flink-item-desc {
-color: white!important;
-}
-
 /* 网站标题增强 */
 #nav .site-name {
 position: relative;
