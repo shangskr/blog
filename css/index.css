@@ -2686,18 +2686,18 @@ figure.highlight pre .javascript .function {
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  width: calc(33.33% - 20px); /* 每行显示三个条目 */
+  width: calc(33.33% - 20px); /* 默认每行显示 3 个条目 */
   border: 1px solid #ddd;
   border-radius: 8px;
   background-color: #fff;
   overflow: hidden;
-  -webkit-box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  -webkit-transition: -webkit-transform 0.3s ease;
-  -moz-transition: -moz-transform 0.3s ease;
-  -o-transition: -o-transform 0.3s ease;
-  -ms-transition: -ms-transform 0.3s ease;
-  transition: transform 0.3s ease;
+  -webkit-box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* 添加阴影效果 */
+  -webkit-transition: -webkit-transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  -moz-transition: -moz-transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  -o-transition: -o-transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  -ms-transition: -ms-transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 .flink-list-item:hover {
   -webkit-transform: scale(1.05);
@@ -2705,6 +2705,8 @@ figure.highlight pre .javascript .function {
   -o-transform: scale(1.05);
   -ms-transform: scale(1.05);
   transform: scale(1.05);
+  -webkit-box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2); /* 悬停时增强阴影 */
 }
 .flink-item-bar {
   display: -webkit-box;
@@ -2713,25 +2715,21 @@ figure.highlight pre .javascript .function {
   display: -ms-flexbox;
   display: box;
   display: flex;
-  height: 8px;
-  background-color: #f3f3f3;
+  height: 8px; /* 保留您原来的高度 */
+  background-color: rgba(0,0,0,0.1); /* 背景色（虚色效果） */
+  border-radius: 4px;
+  width: 100%;
+  margin-top: 10px;
 }
-.flink-item-bar-yellow,
-.flink-item-bar-green,
-.flink-item-bar-red {
+.flink-item-bar-fill {
   height: 100%;
-  -webkit-box-flex: 1;
-  -moz-box-flex: 1;
-  -o-box-flex: 1;
-  box-flex: 1;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  -webkit-transition: background-color 0.3s ease;
-  -moz-transition: background-color 0.3s ease;
-  -o-transition: background-color 0.3s ease;
-  -ms-transition: background-color 0.3s ease;
-  transition: background-color 0.3s ease;
+  width: 50%; /* 默认进度条宽度50%，您可以根据实际情况调整 */
+  border-radius: 4px;
+  -webkit-transition: width 0.3s ease;
+  -moz-transition: width 0.3s ease;
+  -o-transition: width 0.3s ease;
+  -ms-transition: width 0.3s ease;
+  transition: width 0.3s ease; /* 动画效果 */
 }
 .flink-item-bar-yellow {
   background-color: #fc0; /* 黄色 */
@@ -2742,14 +2740,14 @@ figure.highlight pre .javascript .function {
 .flink-item-bar-red {
   background-color: #f44336; /* 红色 */
 }
-.flink-item-bar.yellow-hover:hover {
-  background-color: #ffb300; /* 当黄色条形图被悬停时 */
+.flink-item-bar-fill:hover {
+  background-color: #ffb300; /* 黄色悬停效果 */
 }
-.flink-item-bar.green-hover:hover {
-  background-color: #388e3c; /* 当绿色条形图被悬停时 */
+.flink-item-bar-green:hover {
+  background-color: #388e3c; /* 绿色悬停效果 */
 }
-.flink-item-bar.red-hover:hover {
-  background-color: #d32f2f; /* 当红色条形图被悬停时 */
+.flink-item-bar-red:hover {
+  background-color: #d32f2f; /* 红色悬停效果 */
 }
 .flink-item-content {
   display: -webkit-box;
@@ -2798,6 +2796,10 @@ figure.highlight pre .javascript .function {
   font-size: 16px;
   font-weight: bold;
   margin-bottom: 5px;
+  white-space: nowrap; /* 禁止换行 */
+  overflow: hidden; /* 超出部分隐藏 */
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis; /* 超出部分显示省略号 */
 }
 .flink-item-desc {
   font-size: 14px;
@@ -2816,15 +2818,86 @@ figure.highlight pre .javascript .function {
   .fl-link {
     width: 100%;
   }
-  .fl-link .fl-item {
-    -webkit-box-flex: 1;
-    -moz-box-flex: 1;
-    -o-box-flex: 1;
-    box-flex: 1;
-    -webkit-flex: 0 0 100%;
-    -ms-flex: 0 0 100%;
-    flex: 0 0 100%;
+  .flink-list {
+    gap: 10px; /* 调整间距 */
   }
+  .flink-list-item {
+    width: calc(50% - 10px); /* 每行显示 2 个条目 */
+  }
+  .flink-item-content {
+    padding: 12px; /* 减小内边距 */
+  }
+  .flink-item-icon {
+    width: 40px;
+    height: 40px; /* 调整图标大小 */
+    margin-right: 8px; /* 减小间距 */
+  }
+  .flink-item-name {
+    font-size: 14px; /* 调整手机端字体大小 */
+    max-width: 9ch; /* 限制最大宽度，约等于6个字 */
+    white-space: nowrap; /* 禁止换行 */
+    overflow: hidden; /* 超出部分隐藏 */
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis; /* 超出部分显示省略号 */
+  }
+  .flink-item-desc {
+    font-size: 12px; /* 调整手机端描述文字的字体大小 */
+    max-width: 9ch; /* 限制最大宽度，约等于7个字 */
+    white-space: nowrap; /* 禁止换行 */
+    overflow: hidden; /* 超出部分隐藏 */
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis; /* 超出部分显示省略号 */
+  }
+  .flink-item-bar {
+    height: 6px; /* 改小进度条的高度 */
+  }
+}
+[data-theme="dark"] {
+  --flink-background: #282828;
+  --flink-border-color: #444;
+  --flink-text-color: #eee;
+  --flink-item-bar-background: #1b5a70;
+  --flink-item-name-border-color: #5ebad9;
+  --flink-item-bar-hover-color: #156f8e;
+  --flink-item-desc-color: #ccc;
+  --flink-item-icon-shadow: 2px 2px 1px 1px #1b5a70;
+}
+[data-theme="dark"] .flink-list-item {
+  background-color: var(--flink-background); /* 背景色 */
+  border: 1px solid var(--flink-border-color); /* 边框颜色 */
+  -webkit-box-shadow: 3px 3px 1px 1px #1b5a70;
+  box-shadow: 3px 3px 1px 1px #1b5a70; /* 阴影 */
+}
+[data-theme="dark"] .flink-item-bar {
+  background-color: var(--flink-item-bar-background); /* 进度条背景色 */
+}
+[data-theme="dark"] .flink-item-name {
+  color: var(--flink-text-color); /* 文字颜色 */
+  border-color: var(--flink-item-name-border-color); /* 名字的边框色 */
+}
+[data-theme="dark"] .flink-item-desc {
+  color: var(--flink-item-desc-color); /* 描述文字颜色 */
+}
+[data-theme="dark"] .flink-item-icon {
+  -webkit-box-shadow: var(--flink-item-icon-shadow);
+  box-shadow: var(--flink-item-icon-shadow); /* 图标阴影 */
+  border: 3px solid rgba(255,255,255,0.2); /* 半透明白色边框，更柔和 */
+  border-radius: 50%; /* 保持圆形边框 */
+  -webkit-box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3); /* 轻微的阴影效果，增强立体感 */
+  -webkit-transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  -moz-transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  -o-transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  -ms-transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease; /* 过渡效果 */
+}
+[data-theme="dark"] .flink-item-icon:hover {
+  border-color: rgba(255,255,255,0.5); /* 悬停时增加边框亮度 */
+  -webkit-box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.4); /* 悬停时增加阴影深度 */
+}
+[data-theme="dark"] .flink-item-bar-fill:hover {
+  background-color: var(--flink-item-bar-hover-color); /* 进度条悬停色 */
 }
 #recent-posts .recent-post-item {
   position: relative;
