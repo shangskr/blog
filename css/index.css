@@ -2206,7 +2206,7 @@ figure.highlight pre .javascript .function {
 }
 @media screen and (max-width: 768px) {
   .banner-random {
-    margin-left: 5px;
+    padding-left: 10px;
     padding-right: 10px;
   }
 }
