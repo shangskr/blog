@@ -44,9 +44,6 @@
 [data-theme="dark"] #footer::before {
   background: transparent !important;
 }
-[data-theme="dark"] #page-header::before {
-  background: transparent !important;
-}
 
 /* 阅读模式 */
 .read-mode #aside-content .card-widget {
