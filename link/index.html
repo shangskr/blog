@@ -165,23 +165,18 @@
       }
 
       for (let j = 0; j < lists.length; j++) {
-        // 这里是核心改动，增加了 `flink-item-bar` 部分，条形图的显示
         listResult += `
           <div class="flink-list-item">
-            <a href="${lists[j].link}" title="${lists[j].name}" target="_blank">
-              <div class="flink-item-bar">
-                <span class="flink-item-bar-yellow"></span>
-                <span class="flink-item-bar-green"></span>
-                <span class="flink-item-bar-red"></span>
+            <a href="${lists[j].link}" title="${lists[j].name}" target="_blank" rel="noopener">
+              <div class="flink-item-icon">
+                <img class="no-lightbox" src="${lists[j].avatar}" onerror='this.onerror=null;this.src="/img/friend_404.gif"' alt="${lists[j].name}" />
               </div>
-              <div class="flink-item-content">
-                <div class="flink-item-icon">
-                  <img class="no-lightbox" src="${lists[j].avatar}" onerror='this.onerror=null;this.src="/img/friend_404.gif"' alt="${lists[j].name}" />
-                </div>
-                <div class="flink-item-text">
-                  <div class="flink-item-name">${lists[j].name}</div>
-                  <div class="flink-item-desc" title="${lists[j].descr}">${lists[j].descr}</div>
-                </div>
+              <div class="flink-item-info">
+                <div class="flink-item-name">${lists[j].name}</div>
+                <div class="flink-item-desc" title="${lists[j].descr}">${lists[j].descr}</div>
+              </div>
+              <div class="flink-item-arrow">
+                <i class="fas fa-external-link-alt"></i>
               </div>
             </a>
           </div>`
